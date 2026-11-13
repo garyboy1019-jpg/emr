@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>多國語隨身病歷 · Medfolio</title>
+<style>
+:root{color-scheme:light;--paper:#f3f6ef;--card:#fffffa;--dark:#15473f;--tint:#e5efe2;--line:#cdd9cc;--muted:#516962;--ink:#18342e}
+body[data-theme="rose"]{--paper:#f9f2f2;--card:#fffcfb;--dark:#6d384b;--tint:#f2e2e7;--line:#deccd1;--muted:#6f5660;--ink:#3d2932}
+body[data-theme="sand"]{--paper:#f7f3e9;--card:#fffdf8;--dark:#654e2f;--tint:#eee6d4;--line:#dacfbb;--muted:#6c624e;--ink:#382f23}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Inter,"Microsoft JhengHei",system-ui,sans-serif}
+h1,h2,h3,p,dl,dd{margin:0}button,select,.pick{font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px}button,select,.pick,a{cursor:pointer}button:disabled{opacity:.45;cursor:default}button:enabled:hover,select:hover,.pick:hover{background:var(--tint)}:focus-visible{outline:3px solid #b47630;outline-offset:3px}
+[hidden]{display:none!important}.wrap{width:min(1120px,calc(100% - 48px));margin:auto}
+header{border-bottom:1px solid var(--line);background:var(--card)}.bar,.tools,.heading,.actions,.pagehead,.pager{display:flex;align-items:center;gap:12px}.bar{min-height:68px;justify-content:space-between}.brand{color:var(--dark);font:700 24px Georgia,serif;letter-spacing:-1.1px;display:flex;align-items:center;gap:9px}.cross{display:grid;place-items:center;background:var(--dark);color:white;width:28px;height:28px;border-radius:8px;font:24px/1 system-ui}.tools label{font-size:.83rem;color:var(--muted)}.tools select{max-width:145px}.heading{justify-content:space-between;align-items:end;margin:26px 0 16px}.heading h1{font-size:clamp(27px,3.4vw,44px);line-height:1.15;letter-spacing:-.04em}.demo{background:var(--tint);border:1px solid var(--line);color:var(--dark);border-radius:30px;padding:3px 12px;font-size:.84rem;flex:none}
+.cover{display:flex;gap:18px;align-items:center;position:relative;isolation:isolate;overflow:hidden;background:var(--dark);color:white;border-radius:15px;padding:20px 26px;margin-bottom:18px}.cover:after{position:absolute;z-index:-1;content:"";width:335px;height:275px;border-radius:50%;right:-118px;top:-95px;background:repeating-radial-gradient(ellipse at center,transparent 0 7px,#ffffff28 8px 9px,transparent 10px);transform:rotate(-25deg)}.cover h2{font-size:1.65rem;line-height:1.22}.cover p{opacity:.9;font-size:.89rem}.code,.number,.counter{font-family:ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums}.cover .code{margin-left:auto;background:var(--dark);padding:3px 9px;border:1px solid #ffffff70;border-radius:6px;white-space:nowrap}
+.layout{display:grid;grid-template-columns:minmax(170px,.75fr) minmax(0,2.8fr);align-items:start;gap:18px}.side,.sheet,.status{border:1px solid var(--line);background:var(--card);border-radius:13px}.side{padding:13px}.side h2{font-size:.85rem;color:var(--muted);margin:1px 7px 8px}.navbtn{display:flex;align-items:baseline;width:100%;text-align:start;border:0;background:transparent;gap:12px;padding:10px 12px}.navbtn[aria-current="page"]{background:var(--tint);color:var(--dark);font-weight:700}.number{font-size:.77rem;color:var(--muted)}.sheet{padding:20px 23px}.pagehead{justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px}.pagehead h2{font-size:1.45rem}.counter{font-size:.82rem;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.panel{border:1px solid var(--line);border-radius:9px;padding:14px}.panel h3{font-size:1rem;color:var(--dark);margin-bottom:6px}.wide{grid-column:1/-1}.row{display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-top:1px solid var(--line);padding:5px 0}.row:first-child{border:0}dt{color:var(--muted);font-size:.86rem}dd{text-align:end;overflow-wrap:anywhere;font-size:.94rem}
+.entry{padding:13px 0;border-bottom:1px solid var(--line)}.entry:first-child{padding-top:0}.entry:last-child{border-bottom:0}.entry h3{font-size:1.07rem;margin-bottom:4px}.note{color:var(--muted);font-size:.88rem;margin-top:12px}.pager{justify-content:space-between;margin-top:20px}.primary{background:var(--dark);color:white}.primary:enabled:hover{background:var(--dark);filter:brightness(1.15)}footer{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:18px 0 28px;color:var(--muted);font-size:.86rem}.actions a{color:var(--dark);text-underline-offset:3px}.status{padding:20px}.status p{margin-bottom:10px}.printview{display:none}
+@media(max-width:740px){.wrap{width:calc(100% - 24px)}.tools{gap:5px}.tools label{display:none}.tools select{max-width:116px;padding:6px}.bar{gap:5px}.brand{font-size:20px}.layout{grid-template-columns:1fr;gap:10px}.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px}.navbtn{align-items:center;gap:4px;font-size:.85rem;padding:6px}.number{font-size:.69rem}.side{padding:7px}.side h2{position:absolute;clip-path:inset(100%)}.cards{grid-template-columns:1fr}.cover{padding:16px}.sheet{padding:14px}.heading{align-items:start}.demo{font-size:.72rem}.heading h1{font-size:1.55rem}footer{align-items:start;flex-wrap:wrap}}
+@media(max-width:410px){.brand{font-size:18px}.cross{width:22px;height:22px}.tools select{max-width:105px;font-size:.8rem}.wrap{width:calc(100% - 16px)}.tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media print{@page{margin:14mm}.wrap{width:100%}body{background:white;color:#182f29}header,.layout,.status,footer,.cover:after{display:none!important}.printview{display:block}.heading{margin:0 0 8px}.cover{padding:8px 0;color:#18382d;background:white;margin:0}.cover .code{background:white;color:inherit}.printsection{margin:12px 0}.printsection h2{border-bottom:1px solid #aaa;font-size:17px}.cards{gap:6px}.panel,.entry{break-inside:avoid}.panel{padding:7px}.row{padding:2px 0}.entry{padding:5px 0}.note{margin-top:4px}h2,h3{break-after:avoid}}
+</style></head>
+<body>
+<header><div class="wrap bar"><div class="brand"><span class="cross" aria-hidden="true">+</span>Medfolio</div>
+<div class="tools"><label for="language" data-i="language">語言</label><select id="language"><option lang="zh-Hant" value="zh-Hant">繁體中文</option><option lang="en" value="en">English</option><option lang="ja" value="ja">日本語</option><option lang="ko" value="ko">한국어</option><option lang="vi" value="vi">Tiếng Việt</option></select>
+<label for="theme" data-i="theme">風格</label><select id="theme"><option value="mint" data-i="mint">薄荷綠</option><option value="rose" data-i="rose">柔粉</option><option value="sand" data-i="sand">暖沙</option></select></div></div></header>
+<main class="wrap"><div class="heading"><h1 data-i="title">多國語隨身病歷</h1><span class="demo" data-i="demo">課堂示例</span></div>
+<noscript>請開啟 JavaScript 以顯示病歷。 / Please enable JavaScript.</noscript><div class="status" id="status"><p id="message" role="status">讀取中…</p><label id="pickLabel" for="file" data-i="choose" hidden>選取 JSON 檔</label> <input type="file" accept="application/json,.json" id="file" hidden></div>
+<div id="recordView" hidden><div class="cover"><div><h2 id="patientName"></h2><p id="subline"></p></div><span class="code" id="recordId"></span></div>
+<div class="layout"><nav class="side" aria-labelledby="navtitle"><h2 id="navtitle" data-i="chapters">病歷目錄</h2><div id="tabs" class="tabs"></div></nav>
+<section class="sheet" aria-labelledby="pageTitle"><div class="pagehead"><h2 id="pageTitle" aria-live="polite"></h2><span id="counter" class="counter"></span></div><div id="panel"></div>
+<div class="pager"><button id="prev" data-i="previous">上一頁</button><button id="next" class="primary" data-i="next">下一頁</button></div></section></div>
+<div id="printView" class="printview"></div><footer><span id="updated"></span><div class="actions"><a id="download" download="record.json" data-i="download">下載 JSON</a><button id="print" data-i="print">列印整份病歷</button></div></footer></div></main>
+<script>
+"use strict";
+const copy={
+ "title": {
+  "zh-Hant": "多國語隨身病歷",
+  "en": "Portable health record",
+  "ja": "多言語携帯健康記録",
+  "ko": "다국어 휴대 건강기록",
+  "vi": "Hồ sơ sức khỏe đa ngôn ngữ"
+ },
+ "demo": {
+  "zh-Hant": "課堂示例",
+  "en": "Teaching case",
+  "ja": "授業用症例",
+  "ko": "수업용 사례",
+  "vi": "Hồ sơ minh họa"
+ },
+ "profile": {
+  "zh-Hant": "基本資料",
+  "en": "Profile",
+  "ja": "基本情報",
+  "ko": "기본 정보",
+  "vi": "Thông tin cá nhân"
+ },
+ "history": {
+  "zh-Hant": "主要病史",
+  "en": "Medical history",
+  "ja": "既往歴",
+  "ko": "병력",
+  "vi": "Tiền sử bệnh"
+ },
+ "allergies": {
+  "zh-Hant": "過敏史",
+  "en": "Allergies",
+  "ja": "アレルギー歴",
+  "ko": "알레르기",
+  "vi": "Dị ứng"
+ },
+ "familyHistory": {
+  "zh-Hant": "家族史",
+  "en": "Family history",
+  "ja": "家族歴",
+  "ko": "가족력",
+  "vi": "Tiền sử gia đình"
+ },
+ "procedures": {
+  "zh-Hant": "手術史",
+  "en": "Surgical history",
+  "ja": "手術歴",
+  "ko": "수술력",
+  "vi": "Tiền sử phẫu thuật"
+ },
+ "medications": {
+  "zh-Hant": "用藥史",
+  "en": "Medications",
+  "ja": "服薬歴",
+  "ko": "투약력",
+  "vi": "Thuốc đang dùng"
+ },
+ "body": {
+  "zh-Hant": "身體資料",
+  "en": "Measurements",
+  "ja": "身体情報",
+  "ko": "신체 정보",
+  "vi": "Chỉ số cơ thể"
+ },
+ "contact": {
+  "zh-Hant": "聯絡資訊",
+  "en": "Contact details",
+  "ja": "連絡先",
+  "ko": "연락처",
+  "vi": "Thông tin liên lạc"
+ },
+ "emergency": {
+  "zh-Hant": "緊急聯絡人",
+  "en": "Emergency contact",
+  "ja": "緊急連絡先",
+  "ko": "비상 연락처",
+  "vi": "Liên hệ khẩn cấp"
+ },
+ "care": {
+  "zh-Hant": "照護資訊",
+  "en": "Care information",
+  "ja": "医療情報",
+  "ko": "진료 정보",
+  "vi": "Thông tin chăm sóc"
+ },
+ "name": {
+  "zh-Hant": "中文姓名",
+  "en": "Chinese name",
+  "ja": "中国語氏名",
+  "ko": "중문 이름",
+  "vi": "Tên tiếng Trung"
+ },
+ "romanized": {
+  "zh-Hant": "英文姓名",
+  "en": "Romanized name",
+  "ja": "ローマ字氏名",
+  "ko": "영문 이름",
+  "vi": "Tên Latinh"
+ },
+ "dob": {
+  "zh-Hant": "出生日期",
+  "en": "Date of birth",
+  "ja": "生年月日",
+  "ko": "생년월일",
+  "vi": "Ngày sinh"
+ },
+ "sex": {
+  "zh-Hant": "性別",
+  "en": "Sex",
+  "ja": "性別",
+  "ko": "성별",
+  "vi": "Giới tính"
+ },
+ "blood": {
+  "zh-Hant": "血型",
+  "en": "Blood group",
+  "ja": "血液型",
+  "ko": "혈액형",
+  "vi": "Nhóm máu"
+ },
+ "nationality": {
+  "zh-Hant": "國籍",
+  "en": "Nationality",
+  "ja": "国籍",
+  "ko": "국적",
+  "vi": "Quốc tịch"
+ },
+ "height": {
+  "zh-Hant": "身高",
+  "en": "Height",
+  "ja": "身長",
+  "ko": "키",
+  "vi": "Chiều cao"
+ },
+ "weight": {
+  "zh-Hant": "體重",
+  "en": "Weight",
+  "ja": "体重",
+  "ko": "체중",
+  "vi": "Cân nặng"
+ },
+ "doc": {
+  "zh-Hant": "證件代碼",
+  "en": "Document ID",
+  "ja": "身分証コード",
+  "ko": "증명서 번호",
+  "vi": "Mã giấy tờ"
+ },
+ "phone": {
+  "zh-Hant": "電話",
+  "en": "Phone",
+  "ja": "電話番号",
+  "ko": "전화번호",
+  "vi": "Điện thoại"
+ },
+ "email": {
+  "zh-Hant": "電子郵件",
+  "en": "Email",
+  "ja": "メール",
+  "ko": "이메일",
+  "vi": "Email"
+ },
+ "address": {
+  "zh-Hant": "地址",
+  "en": "Address",
+  "ja": "住所",
+  "ko": "주소",
+  "vi": "Địa chỉ"
+ },
+ "relationship": {
+  "zh-Hant": "關係",
+  "en": "Relationship",
+  "ja": "続柄",
+  "ko": "관계",
+  "vi": "Quan hệ"
+ },
+ "contactName": {
+  "zh-Hant": "姓名",
+  "en": "Name",
+  "ja": "氏名",
+  "ko": "이름",
+  "vi": "Họ tên"
+ },
+ "insurance": {
+  "zh-Hant": "保險",
+  "en": "Insurance",
+  "ja": "保険",
+  "ko": "보험",
+  "vi": "Bảo hiểm"
+ },
+ "clinician": {
+  "zh-Hant": "主要醫師",
+  "en": "Primary clinician",
+  "ja": "かかりつけ医",
+  "ko": "주치의",
+  "vi": "Bác sĩ chính"
+ },
+ "facility": {
+  "zh-Hant": "常用院所",
+  "en": "Usual clinic",
+  "ja": "かかりつけの医療機関",
+  "ko": "이용 의료기관",
+  "vi": "Cơ sở thường khám"
+ },
+ "notes": {
+  "zh-Hant": "備註",
+  "en": "Notes",
+  "ja": "備考",
+  "ko": "비고",
+  "vi": "Ghi chú"
+ },
+ "language": {
+  "zh-Hant": "語言",
+  "en": "Language",
+  "ja": "言語",
+  "ko": "언어",
+  "vi": "Ngôn ngữ"
+ },
+ "theme": {
+  "zh-Hant": "風格",
+  "en": "Theme",
+  "ja": "テーマ",
+  "ko": "테마",
+  "vi": "Giao diện"
+ },
+ "mint": {
+  "zh-Hant": "薄荷綠",
+  "en": "Mint",
+  "ja": "ミント",
+  "ko": "민트",
+  "vi": "Xanh bạc hà"
+ },
+ "rose": {
+  "zh-Hant": "柔粉",
+  "en": "Rose",
+  "ja": "ローズ",
+  "ko": "장미색",
+  "vi": "Hồng"
+ },
+ "sand": {
+  "zh-Hant": "暖沙",
+  "en": "Sand",
+  "ja": "サンド",
+  "ko": "모래색",
+  "vi": "Màu cát"
+ },
+ "previous": {
+  "zh-Hant": "上一頁",
+  "en": "Previous",
+  "ja": "前へ",
+  "ko": "이전",
+  "vi": "Trước"
+ },
+ "next": {
+  "zh-Hant": "下一頁",
+  "en": "Next",
+  "ja": "次へ",
+  "ko": "다음",
+  "vi": "Sau"
+ },
+ "chapters": {
+  "zh-Hant": "病歷目錄",
+  "en": "Contents",
+  "ja": "目次",
+  "ko": "목차",
+  "vi": "Mục lục"
+ },
+ "print": {
+  "zh-Hant": "列印整份病歷",
+  "en": "Print full record",
+  "ja": "全ページを印刷",
+  "ko": "전체 기록 인쇄",
+  "vi": "In toàn bộ hồ sơ"
+ },
+ "download": {
+  "zh-Hant": "下載 JSON",
+  "en": "Download JSON",
+  "ja": "JSONをダウンロード",
+  "ko": "JSON 다운로드",
+  "vi": "Tải JSON"
+ },
+ "updated": {
+  "zh-Hant": "更新日期",
+  "en": "Updated",
+  "ja": "更新日",
+  "ko": "갱신일",
+  "vi": "Cập nhật"
+ },
+ "local": {
+  "zh-Hant": "請選取同一資料夾的 record.json 以開啟病歷。",
+  "en": "Select record.json from the same folder to open the record.",
+  "ja": "同じフォルダーの record.json を選択してください。",
+  "ko": "같은 폴더의 record.json 파일을 선택하세요.",
+  "vi": "Chọn tệp record.json trong cùng thư mục để mở hồ sơ."
+ },
+ "loading": {
+  "zh-Hant": "讀取中…",
+  "en": "Loading…",
+  "ja": "読み込み中…",
+  "ko": "불러오는 중…",
+  "vi": "Đang tải…"
+ },
+ "error": {
+  "zh-Hant": "無法讀取病歷，請重新選取本作業的 record.json。",
+  "en": "Could not load this record. Select this assignment’s record.json.",
+  "ja": "読み込めません。この課題の record.json を選択してください。",
+  "ko": "기록을 불러올 수 없습니다. 과제의 record.json을 선택하세요.",
+  "vi": "Không thể đọc hồ sơ. Vui lòng chọn tệp record.json của bài tập."
+ },
+ "choose": {
+  "zh-Hant": "選取 JSON 檔",
+  "en": "Choose JSON file",
+  "ja": "JSONを選択",
+  "ko": "JSON 파일 선택",
+  "vi": "Chọn tệp JSON"
+ }
+};
+const pages=["profile","history","allergies","familyHistory","procedures","medications"];
+const $=id=>document.getElementById(id);
+let lang="zh-Hant", current=0, record=null, url="", message="loading";
+const t=key=>copy[key][lang];
+const val=x=>typeof x==="object" && x!==null ? x[lang] : String(x);
+function el(tag,content,css){
+  const node=document.createElement(tag);
+  if(content!==undefined) node.textContent=content;
+  if(css) node.className=css;
+  return node;
+}
+function card(key,rows,wide=false){
+  const section=el("section",undefined,"panel"+(wide?" wide":""));
+  const dl=el("dl");
+  for(const [label,value] of rows){
+    const row=el("div",undefined,"row");
+    row.append(el("dt",t(label)),el("dd",val(value)));
+    dl.append(row);
+  }
+  section.append(el("h3",t(key)),dl);
+  return section;
+}
+function content(key){
+  const out=el("div");
+  if(key==="profile"){
+    out.className="cards";
+    const {patient:p,contact:c,emergencyContact:e,care}=record;
+    out.append(card("profile",[["name",p.name],["romanized",p.romanizedName],["dob",p.birthDate],["sex",p.sex],["blood",p.bloodGroup],["nationality",p.nationality]]),
+      card("body",[["height",p.heightCm+" cm"],["weight",p.weightKg+" kg"],["doc",p.documentId]]),
+      card("contact",[["phone",c.phone],["email",c.email],["address",c.address]]),
+      card("emergency",[["contactName",e.name],["relationship",e.relationship],["phone",e.phone]]),
+      card("care",[["insurance",care.insurance],["clinician",care.primaryClinician],["facility",care.facility],["notes",care.note]],true));
+  }else if(key==="history" || key==="familyHistory"){
+    for(const item of record[key]){
+      const entry=el("section",undefined,"entry");
+      entry.append(el("h3",val(item.title)),el("p",val(item.detail)));out.append(entry);
+    }
+    if(key==="familyHistory") out.append(el("p",val(record.familyNote),"note"));
+  }else{
+    out.append(el("p",val(record[key].summary)));
+  }
+  return out;
+}
+function selectPage(index){
+  current=Math.max(0,Math.min(pages.length-1,index));
+  Array.from($("tabs").children).forEach((button,i)=>{
+    if(i===current) button.setAttribute("aria-current","page");else button.removeAttribute("aria-current");
+  });
+  $("pageTitle").textContent=t(pages[current]);
+  $("counter").textContent=(current+1)+" / "+pages.length;
+  $("panel").replaceChildren(content(pages[current]));
+  $("prev").disabled=current===0;
+  $("next").disabled=current===pages.length-1;
+}
+function render(){
+  document.documentElement.lang=lang;document.title=t("title")+" · Medfolio";
+  document.querySelectorAll("[data-i]").forEach(n=>n.textContent=t(n.dataset.i));
+  $("recordView").hidden=!record;$("status").hidden=Boolean(record);
+  if(!record){
+    $("message").textContent=t(message);
+    $("file").hidden=$("pickLabel").hidden=(message==="loading");
+    return;
+  }
+  const p=record.patient;
+  $("patientName").textContent=["zh-Hant","ja"].includes(lang)?p.name:p.romanizedName;
+  $("subline").textContent=(["zh-Hant","ja"].includes(lang)?p.romanizedName:p.name)+" · "+p.heightCm+" cm · "+p.weightKg+" kg";
+  $("recordId").textContent=record.recordId;
+  $("updated").textContent=t("updated")+" · "+record.updated;
+  $("tabs").replaceChildren();
+  $("printView").replaceChildren();
+  pages.forEach((key,i)=>{
+    const btn=el("button",undefined,"navbtn");
+    btn.append(el("span",String(i+1).padStart(2,"0"),"number"),el("span",t(key)));
+    btn.addEventListener("click",()=>selectPage(i));$("tabs").append(btn);
+    const section=el("section",undefined,"printsection");
+    section.append(el("h2",t(key)),content(key));$("printView").append(section);
+  });
+  selectPage(current);
+}
+// Each translated value has entries for all five display languages.
+const langs=Object.keys(copy.title);
+const string=x=>typeof x==="string" && x.trim()!=="";
+const translated=x=>x && langs.every(l=>string(x[l]));
+function fields(obj,keys,check){return obj && keys.every(k=>check(obj[k]));}
+function valid(r){
+  const list=items=>Array.isArray(items) && items.every(i=>fields(i,["title","detail"],translated));
+  return r && r.schemaVersion===2 && r.teachingCase===true && fields(r,["recordId","updated"],string)
+    && fields(r.patient,["name","romanizedName","birthDate","bloodGroup","documentId"],string)
+    && fields(r.patient,["heightCm","weightKg"],n=>Number.isFinite(n)&&n>0)
+    && fields(r.patient,["sex","nationality"],translated)
+    && fields(r.contact,["phone","email"],string) && fields(r.contact,["address"],translated)
+    && fields(r.emergencyContact,["name","phone"],string) && fields(r.emergencyContact,["relationship"],translated)
+    && fields(r.care,["insurance","primaryClinician","facility","note"],translated)
+    && list(r.history) && list(r.familyHistory) && translated(r.familyNote)
+    && ["allergies","procedures","medications"].every(k=>fields(r[k],["summary"],translated));
+}
+async function openRecord(read){
+  record=null;message="loading";render();
+  if(url){URL.revokeObjectURL(url);url="";$("download").removeAttribute("href");}
+  try{
+    const text=await read(); const parsed=JSON.parse(text);
+    if(!valid(parsed)) throw new Error("Invalid record");
+    url=URL.createObjectURL(new Blob([text],{type:"application/json;charset=utf-8"}));$("download").href=url;
+    current=0;record=parsed;
+  }catch{message="error";}
+  render();
+}
+$("language").addEventListener("change",e=>{lang=e.target.value;render();});
+$("theme").addEventListener("change",e=>{document.body.dataset.theme=e.target.value;});
+$("prev").addEventListener("click",()=>selectPage(current-1));
+$("next").addEventListener("click",()=>selectPage(current+1));
+$("print").addEventListener("click",()=>window.print());
+$("file").addEventListener("change",e=>{const file=e.target.files[0];if(file){e.target.value="";openRecord(()=>file.text());}});
+if(location.protocol==="file:"){message="local";render();}
+else openRecord(async()=>{const response=await fetch("./record.json",{cache:"no-cache"});if(!response.ok) throw new Error("Unavailable");return response.text();});
+</script></body></html>

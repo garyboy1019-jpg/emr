@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 2,
+  "recordId": "DEMO-001",
+  "updated": "2026-11-13",
+  "teachingCase": true,
+  "patient": {
+    "name": "林安",
+    "romanizedName": "Lin An",
+    "birthDate": "2002-03-12",
+    "sex": {
+      "zh-Hant": "男",
+      "en": "Male",
+      "ja": "男性",
+      "ko": "남성",
+      "vi": "Nam"
+    },
+    "bloodGroup": "O+",
+    "nationality": {
+      "zh-Hant": "臺灣",
+      "en": "Taiwan",
+      "ja": "台湾",
+      "ko": "대만",
+      "vi": "Đài Loan"
+    },
+    "heightCm": 176,
+    "weightKg": 65,
+    "documentId": "DEMO-ID-001"
+  },
+  "contact": {
+    "phone": "+886 9XX XXX XXX",
+    "email": "lin.an@example.com",
+    "address": {
+      "zh-Hant": "臺灣臺北市（示意地址）",
+      "en": "Taipei, Taiwan (sample address)",
+      "ja": "台湾・台北市（架空の住所）",
+      "ko": "대만 타이베이시 (예시 주소)",
+      "vi": "Đài Bắc, Đài Loan (địa chỉ minh họa)"
+    }
+  },
+  "emergencyContact": {
+    "name": "林禾 / Lin He",
+    "relationship": {
+      "zh-Hant": "妹妹",
+      "en": "Younger sister",
+      "ja": "妹",
+      "ko": "여동생",
+      "vi": "Em gái"
+    },
+    "phone": "+886 9XX XXX XXX"
+  },
+  "care": {
+    "insurance": {
+      "zh-Hant": "全民健康保險（示例）",
+      "en": "National Health Insurance (example)",
+      "ja": "台湾の全民健康保険（例）",
+      "ko": "대만 국민건강보험 (예시)",
+      "vi": "Bảo hiểm y tế toàn dân Đài Loan (ví dụ)"
+    },
+    "primaryClinician": {
+      "zh-Hant": "陳醫師｜家庭醫學科（虛構）",
+      "en": "Dr. Chen, Family Medicine (fictional)",
+      "ja": "陳医師・家庭医療科（架空）",
+      "ko": "천 의사 · 가정의학과 (가상)",
+      "vi": "Bác sĩ Chen, khoa Y học gia đình (giả định)"
+    },
+    "facility": {
+      "zh-Hant": "青禾診所（虛構）",
+      "en": "Qinghe Clinic (fictional)",
+      "ja": "青禾クリニック（架空）",
+      "ko": "칭허 의원 (가상)",
+      "vi": "Phòng khám Qinghe (giả định)"
+    },
+    "note": {
+      "zh-Hant": "課堂示例，身分與聯絡資料為虛構。",
+      "en": "Classroom example with fictional identity and contact details.",
+      "ja": "授業用の例。個人情報と連絡先は架空です。",
+      "ko": "수업용 예시로, 인적 사항과 연락처는 가상 정보입니다.",
+      "vi": "Ví dụ dùng trong lớp học. Danh tính và thông tin liên hệ là giả định."
+    }
+  },
+  "history": [
+    {
+      "title": {
+        "zh-Hant": "氣喘",
+        "en": "Asthma",
+        "ja": "気管支喘息",
+        "ko": "천식",
+        "vi": "Hen phế quản"
+      },
+      "detail": {
+        "zh-Hant": "有氣喘病史。確診年份與近期發作情形未提供。",
+        "en": "History of asthma. Year of diagnosis and recent symptoms were not provided.",
+        "ja": "気管支喘息の既往あり。診断年と最近の症状は不明。",
+        "ko": "천식 병력 있음. 진단 연도와 최근 증상에 관한 정보는 제공되지 않음.",
+        "vi": "Có tiền sử hen phế quản. Chưa có thông tin về năm chẩn đoán và triệu chứng gần đây."
+      }
+    },
+    {
+      "title": {
+        "zh-Hant": "近視",
+        "en": "Myopia",
+        "ja": "近視",
+        "ko": "근시",
+        "vi": "Cận thị"
+      },
+      "detail": {
+        "zh-Hant": "有近視，度數未提供。",
+        "en": "Myopia. Refractive error was not provided.",
+        "ja": "近視あり。度数は不明。",
+        "ko": "근시 있음. 도수는 확인되지 않음.",
+        "vi": "Có cận thị. Chưa có thông tin về độ cận."
+      }
+    }
+  ],
+  "allergies": {
+    "summary": {
+      "zh-Hant": "無已知藥物、食物或環境過敏。",
+      "en": "No known drug, food, or environmental allergies.",
+      "ja": "既知の薬剤・食物・環境アレルギーなし。",
+      "ko": "알려진 약물·음식·환경 알레르기 없음.",
+      "vi": "Không ghi nhận dị ứng thuốc, thực phẩm hoặc tác nhân môi trường."
+    }
+  },
+  "familyHistory": [
+    {
+      "title": {
+        "zh-Hant": "父親",
+        "en": "Father",
+        "ja": "父",
+        "ko": "아버지",
+        "vi": "Cha"
+      },
+      "detail": {
+        "zh-Hant": "有腸胃道腫瘤及多發性骨髓瘤（MM）病史。",
+        "en": "History of a gastrointestinal tumor and multiple myeloma (MM).",
+        "ja": "消化管腫瘍および多発性骨髄腫（MM）の既往あり。",
+        "ko": "위장관 종양과 다발골수종(MM) 병력 있음.",
+        "vi": "Có tiền sử khối u đường tiêu hóa và đa u tủy xương (MM)."
+      }
+    },
+    {
+      "title": {
+        "zh-Hant": "母親",
+        "en": "Mother",
+        "ja": "母",
+        "ko": "어머니",
+        "vi": "Mẹ"
+      },
+      "detail": {
+        "zh-Hant": "有腸胃道腫瘤病史。",
+        "en": "History of a gastrointestinal tumor.",
+        "ja": "消化管腫瘍の既往あり。",
+        "ko": "위장관 종양 병력 있음.",
+        "vi": "Có tiền sử khối u đường tiêu hóa."
+      }
+    }
+  ],
+  "familyNote": {
+    "zh-Hant": "父母的腸胃道腫瘤部位、良惡性及診斷年齡均未提供。",
+    "en": "Tumor site, benign or malignant status, and age at diagnosis were not provided for either parent's gastrointestinal tumor.",
+    "ja": "両親の消化管腫瘍について、部位、良性・悪性の別、診断時の年齢は不明。",
+    "ko": "부모 모두 위장관 종양의 위치, 양성·악성 여부 및 진단 당시 나이는 알려지지 않음.",
+    "vi": "Chưa có thông tin về vị trí, tính chất lành hay ác tính và tuổi chẩn đoán khối u đường tiêu hóa của cha mẹ."
+  },
+  "procedures": {
+    "summary": {
+      "zh-Hant": "無手術史。",
+      "en": "No prior surgery.",
+      "ja": "手術歴なし。",
+      "ko": "수술력 없음.",
+      "vi": "Chưa từng phẫu thuật."
+    }
+  },
+  "medications": {
+    "summary": {
+      "zh-Hant": "目前沒有使用藥物。",
+      "en": "Currently taking no medications.",
+      "ja": "現在使用中の薬剤なし。",
+      "ko": "현재 사용 중인 약물 없음.",
+      "vi": "Hiện không dùng thuốc."
+    }
+  }
+}
